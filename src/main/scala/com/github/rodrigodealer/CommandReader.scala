@@ -40,7 +40,9 @@ object CommandReader {
   }
 }
 
-case class Command(operation: CommandType, user: String, otherUser: Option[String], args: Option[String])
+case class Command(operation: CommandType, user: String, otherUser: Option[String], args: Option[String]) {
+
+}
 
 object CommandType extends Enumeration {
   type CommandType = Value
