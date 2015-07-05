@@ -11,18 +11,18 @@ import org.joda.time.{DateTime, Period}
 object DateUtil {
 
   private val formatter = new PeriodFormatterBuilder()
-    .appendSeconds().appendSuffix(" seconds ago")
-    .appendMinutes().appendSuffix(" minutes ago")
-    .appendHours().appendSuffix(" hours ago")
-    .appendDays().appendSuffix(" days ago")
-    .appendWeeks().appendSuffix(" weeks ago")
-    .appendMonths().appendSuffix(" months ago")
-    .appendYears().appendSuffix(" years ago")
+    .appendSeconds().appendSuffix(" seconds ago\n")
+    .appendMinutes().appendSuffix(" minutes ago\n")
+    .appendHours().appendSuffix(" hours ago\n")
+    .appendDays().appendSuffix(" days ago\n")
+    .appendWeeks().appendSuffix(" weeks ago\n")
+    .appendMonths().appendSuffix(" months ago\n")
+    .appendYears().appendSuffix(" years ago\n")
     .printZeroNever()
     .toFormatter
 
   def elapsedTimeFrom(startDate: Date, endDate: Date) = {
     val period = new Period(new DateTime(startDate), new DateTime(endDate))
-    formatter.print(period)
+    formatter.print(period).split("\n").last
   }
 }
