@@ -21,5 +21,4 @@ class MessageSpec extends FlatSpec with Matchers {
 
     message.wallFormat(endDate) shouldBe "Johnny - I love summer (35 years ago)"
   }
-
 }
