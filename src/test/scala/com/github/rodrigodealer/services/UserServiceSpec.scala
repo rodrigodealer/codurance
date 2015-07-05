@@ -14,7 +14,7 @@ class UserServiceSpec extends FlatSpec with Matchers with BeforeAndAfterEach {
     service = new UserService
   }
 
-  "users list" should "have size 0" in {
+  it should "have size 0 users in users list" in {
     service.users should have size 0
   }
 
