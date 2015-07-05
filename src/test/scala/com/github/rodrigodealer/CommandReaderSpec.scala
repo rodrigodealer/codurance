@@ -12,7 +12,6 @@ class CommandReaderSpec extends FlatSpec with Matchers {
     command.operation shouldBe CommandType.Post
     command.user shouldBe "Alice"
     command.args shouldBe Some("I love the weather today")
-
   }
 
   it should "identify as a read command" in {
