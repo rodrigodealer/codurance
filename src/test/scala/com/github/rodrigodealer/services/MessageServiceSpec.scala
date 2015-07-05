@@ -1,6 +1,7 @@
 package com.github.rodrigodealer.services
 
 import com.github.rodrigodealer.models.{User, Message}
+import org.joda.time.DateTime
 import org.scalatest.{BeforeAndAfterEach, Matchers, FlatSpec}
 
 /**
@@ -45,5 +46,20 @@ class MessageServiceSpec extends FlatSpec with Matchers with BeforeAndAfterEach 
     messages should have size 2
     messages.head.content should be("I want to travel next year")
     messages.last.content should be("I love winter")
+  }
+
+  it should "show user wall" in {
+    val johnny = userService.create(User("Johnny"))
+    val alice = userService.create(User("Alice"))
+    johnny.follow(alice)
+
+    service.post(Message("I love winter", johnny, new DateTime(1978, 3, 26, 12, 35, 0, 0).toDate))
+    service.post(Message("I love summer", alice, new DateTime(1978, 3, 26, 12, 38, 0, 0).toDate))
+
+    val messages = service.messagesOrderedByDateFor(johnny)
+    messages.head.content should be("I love summer")
+    messages.head.user.name should be("Alice")
+    messages.last.content should be("I love winter")
+    messages.last.user.name should be("Johnny")
   }
 }
