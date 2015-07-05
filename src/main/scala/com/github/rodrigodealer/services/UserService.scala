@@ -9,6 +9,13 @@ class UserService {
 
   var users = Set[User]()
 
+  def find(user: User) : Option[User] = {
+    users.filter(u => u.equals(user)) match {
+      case userList if userList.size > 0 => Option(userList.head)
+      case _ => Option.empty
+    }
+  }
+
   def create(user: User) = {
     users += user
     user

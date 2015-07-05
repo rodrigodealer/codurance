@@ -51,4 +51,19 @@ class UserServiceSpec extends FlatSpec with Matchers with BeforeAndAfterEach {
     johnny.follows should have size 1
     johnny.follows.head shouldBe alice
   }
+
+  it should "find a known user" in {
+    val johnny = service.create(User("Johnny"))
+
+    val foundUser = service.find(User("Johnny"))
+
+    foundUser should be (Some(User("Johnny")))
+  }
+
+  it should "not find a unknown user" in {
+
+    val foundUser = service.find(User("Johnny"))
+
+    foundUser should be (None)
+  }
 }
