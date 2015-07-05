@@ -1,0 +1,12 @@
+---
+- name: Clone the repository
+  git: repo={{ git_repo }} dest=/tmp/{{ project_name }} update=yes accept_hostkey=yes version={{ version }}
+  tags:
+    - app
+
+- name: Build assembly package
+  command: java -jar /opt/sbt/sbt.jar clean assembly
+  args:
+    chdir: /tmp/{{ project_name }}
+  tags:
+    - app

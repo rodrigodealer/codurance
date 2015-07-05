@@ -1,0 +1,13 @@
+---
+- hosts: all
+  serial: 1
+  user: vagrant
+  vars:
+    project_name: codurance
+    git_repo: https://github.com/rodrigodealer/codurance.git
+
+  tasks:
+    - include: ansible/tasks/git.yml
+    - include: ansible/tasks/java8.yml
+    - include: ansible/tasks/sbt.yml
+    - include: ansible/tasks/app.yml
