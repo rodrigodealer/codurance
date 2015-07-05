@@ -14,6 +14,7 @@ import scala.io.StdIn
 object App {
 
   def main(args: Array[String]) {
+    println("App is running..")
     for (ln <- io.Source.stdin.getLines()) readCommandLine(ln)
   }
 
